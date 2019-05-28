@@ -67,23 +67,7 @@ public class ovchipkaartimpl extends arangobasedao {
 
 	}
 
-	public Ovchipkaart delete(String key) throws ParseException {
-		ArangoDB conn = super.getconnetion();
-		BaseDocument myDocument = conn.db(dbName).collection(collectionName).getDocument(key, BaseDocument.class);
-		System.out.println("Key: " + myDocument.getKey());
-		Ovchipkaart o = new Ovchipkaart();
-		o.setKaartNummer(Integer.valueOf((myDocument.getAttribute("kaartnummer") + "")));
-		;
-		o.setSaldo(NumberFormat.getInstance().parse((myDocument.getAttribute("saldo") + "")));
-		String c = myDocument.getAttribute("klasse") + "";
-		o.setKlasse(Integer.valueOf(c));
-		String a = "" + myDocument.getAttribute("geldigTot") + "";
-		o.setGeldigTot(java.sql.Date.valueOf(a));
-		arangoimpl ar = new arangoimpl();
-		o.setReiziger(ar.findbyid(Integer.valueOf(myDocument.getAttribute("reizigersID")+ "")));
-		conn.db(dbName).collection(collectionName).deleteDocument(key);
-		return o;
-	}
+
 	public void del(int kaartnummer) {
 		ArangoDB conn = super.getconnetion();
 		try {

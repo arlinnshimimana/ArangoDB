@@ -3,7 +3,7 @@ package nl.hu.v1wac2.Arango2;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class main {
+public class man {
 
 	public static void main(String[] args) throws ParseException {
 		arangoimpl ar = new arangoimpl();
@@ -25,7 +25,7 @@ public class main {
 		//ov.save(o);
 		//ar.create(r);
 		//System.out.println(ov.del(57401);
-		System.out.println(ar.findall());
+		System.out.println(ar.delete1(2));
 		
 	}
 
