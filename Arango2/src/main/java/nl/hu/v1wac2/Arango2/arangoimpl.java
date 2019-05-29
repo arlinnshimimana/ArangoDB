@@ -28,7 +28,6 @@ public class arangoimpl extends arangobasedao {
 			String query = "FOR t IN reiziger RETURN t";
 			ArangoCursor<BaseDocument> cursor = conn.db(dbName).query(query, null, null, BaseDocument.class);
 			cursor.forEachRemaining(aDocument -> {
-				System.out.println("Key: " + aDocument.getKey());
 				Reiziger r = new Reiziger();
 				r.setId(Integer.valueOf(aDocument.getAttribute("reizigersID")+""));
 				r.setNaam(aDocument.getAttribute("achternaam") + "");
@@ -70,7 +69,7 @@ public class arangoimpl extends arangobasedao {
 
 	}
 
-	public void delete1(int reizigerID) {
+	public void delete(int reizigerID) {
 		ArangoDB conn = super.getconnetion();
 		String query = "FOR t IN reiziger FILTER t.reizigersID == @reizigersID Remove t in reiziger";
 		Map<String, Object> bindVars = new MapBuilder().put("reizigersID", reizigerID).get();

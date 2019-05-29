@@ -2,6 +2,7 @@ package nl.hu.v1wac2.Arango2;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,9 +35,13 @@ public class ovchipkaartimpl extends arangobasedao {
 				}
 				String c = aDocument.getAttribute("klasse") + "";
 				o.setKlasse(Integer.valueOf(c));
-				String a = "" + aDocument.getAttribute("geldigTot") + "";
-				o.setGeldigTot(java.sql.Date.valueOf(a));
-				arangoimpl ar = new arangoimpl();
+				String aa = "" + aDocument.getAttribute("geldigTot") + "";
+				try {
+					o.setGeldigTot(new SimpleDateFormat("yyyy-MM-dd").parse(aa));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				arangoimpl ar = new arangoimpl();
 
 				o.setReiziger(ar.findbyid(Integer.valueOf(aDocument.getAttribute("reizigerID")+"")));
 				al.add(o);
@@ -106,10 +111,16 @@ public class ovchipkaartimpl extends arangobasedao {
 					}
 					String c = aDocument.getAttribute("klasse") + "";
 					o.setKlasse(Integer.valueOf(c));
-					String a = "" + aDocument.getAttribute("geldigTot") + "";
-					o.setGeldigTot(java.sql.Date.valueOf(a));
-					arangoimpl ar = new arangoimpl();
-					o.setReiziger(ar.findbyid(Integer.valueOf(aDocument.getAttribute("reizigerID") + "")));
+					String aa = "" + aDocument.getAttribute("geldigTot") + "";
+					try {
+						o.setGeldigTot(new SimpleDateFormat("yyyy-MM-dd").parse(aa));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}				arangoimpl ar = new arangoimpl();
+
+					arangoimpl ar1 = new arangoimpl();
+					o.setReiziger(ar1.findbyid(Integer.valueOf(aDocument.getAttribute("reizigerID") + "")));
 				  });
 				} catch (ArangoDBException e) {
 				  System.err.println("Failed to execute query. " + e.getMessage());
@@ -141,8 +152,14 @@ public class ovchipkaartimpl extends arangobasedao {
 					}
 					String c = aDocument.getAttribute("klasse") + "";
 					o.setKlasse(Integer.valueOf(c));
-					String a = "" + aDocument.getAttribute("geldigTot") + "";
-					o.setGeldigTot(java.sql.Date.valueOf(a));
+					String aa = "" + aDocument.getAttribute("geldigTot") + "";
+					try {
+						o.setGeldigTot(new SimpleDateFormat("yyyy-MM-dd").parse(aa));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}				arangoimpl ar = new arangoimpl();
+
 					o.setReiziger(r);
 					aso.add(o);
 				  });
