@@ -52,7 +52,7 @@ public class ovchipkaartimpl extends arangobasedao {
 		ArangoDB conn = super.getconnetion();
 		String id = "" + ovchipkaart.getKaartNummer() + "";
 		BaseDocument myObject = new BaseDocument();
-		myObject.addAttribute("kaartnummer", ovchipkaart.getKaartNummer());
+		myObject.addAttribute("kaartNummer", ovchipkaart.getKaartNummer());
 		myObject.addAttribute("klasse", ovchipkaart.getKlasse());
 		myObject.addAttribute("saldo", ovchipkaart.getSaldo());
 		myObject.addAttribute("geldigTot", ovchipkaart.getGeldigTot());

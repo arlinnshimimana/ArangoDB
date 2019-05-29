@@ -17,15 +17,16 @@ public class man {
 		o.setGeldigTot(new SimpleDateFormat("dd-MM-yyyy").parse("18-09-2004"));
 		
 		Reiziger r = new Reiziger();
-		r.setId(2);
+		r.setId(9);
 		r.setNaam("arlin");
 		r.setVoorletter("a");
-		r.setGbdatum(new SimpleDateFormat("dd-MM-yyyy").parse("18-09-2004"));;
+		r.setGbdatum(new SimpleDateFormat("yyyy-MM-dd").parse("2004-01-03"));;
 		
 		//ov.save(o);
 		//ar.create(r);
 		//System.out.println(ov.del(57401);
-		System.out.println(ar.delete1(2));
+		System.out.println(ar.save(r));
+		System.out.println(ar.findall());
 		
 	}
 

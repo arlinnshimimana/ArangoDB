@@ -30,12 +30,12 @@ public class arangoimpl extends arangobasedao {
 			cursor.forEachRemaining(aDocument -> {
 				System.out.println("Key: " + aDocument.getKey());
 				Reiziger r = new Reiziger();
-				r.setId(Integer.valueOf(aDocument.getAttribute("reizigersID") + ""));
+				r.setId(Integer.valueOf(aDocument.getAttribute("reizigersID")+""));
 				r.setNaam(aDocument.getAttribute("achternaam") + "");
 				r.setVoorletter(aDocument.getAttribute("voorletters") + "");
 				String aa = "" + aDocument.getAttribute("gebortedatum") + "";
 				try {
-					r.setGbdatum(new SimpleDateFormat("yyyy-mm-dd").parse(aa));
+					r.setGbdatum(new SimpleDateFormat("yyyy-MM-dd").parse(aa));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -54,10 +54,12 @@ public class arangoimpl extends arangobasedao {
 	public Reiziger save(Reiziger reiziger) {
 		ArangoDB conn = super.getconnetion();
 		BaseDocument myObject = new BaseDocument();
-		myObject.addAttribute("reizigerID", reiziger.getId());
+		myObject.addAttribute("reizigersID", reiziger.getId());
 		myObject.addAttribute("voorletter", reiziger.getVoorletter());
 		myObject.addAttribute("achternaam", reiziger.getNaam());
-		myObject.addAttribute("geboortedatum", reiziger.getGbdatum());
+		SimpleDateFormat as= new SimpleDateFormat("yyyy-MM-dd");
+		String strDate = as.format(reiziger.getGbdatum()); 
+		myObject.addAttribute("gebortedatum", strDate);
 		try {
 			conn.db(dbName).collection(collectionName).insertDocument(myObject);
 			System.out.println("Document created");
